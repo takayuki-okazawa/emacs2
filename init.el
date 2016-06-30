@@ -168,12 +168,75 @@
 (setq company-selection-wrap-around t) ; 候補の一番下でさらに下に行こうとすると一番上に戻る
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                   company-auto  PHP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-hook 'php-mode-hook
+          '(lambda ()
+             (require 'company-php)
+             (company-mode t)
+             (add-to-list 'company-backends 'company-ac-php-backend )))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                   company-auto  JavaScript
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-setq company-tern-property-marker "")
-(defun company-tern-depth (candidate)
-  "Return depth attribute for CANDIDATE. 'nil' entries are treated as 0."
-  (let ((depth (get-text-property 0 'depth candidate)))
-    (if (eq depth nil) 0 depth)))
-(add-hook 'js2-mode-hook 'tern-mode) ; 自分が使っているjs用メジャーモードに変える
-(add-to-list 'company-backends 'company-tern) ; backendに追加
+;setq company-tern-property-marker "")
+;(defun company-tern-depth (candidate)
+;  "Return depth attribute for CANDIDATE. 'nil' entries are treated as 0."
+;  (let ((depth (get-text-property 0 'depth candidate)))
+;    (if (eq depth nil) 0 depth)))
+;(add-hook 'js2-mode-hook 'tern-mode) ; 自分が使っているjs用メジャーモードに変える
+;(add-to-list 'company-backends 'company-tern) ; backendに追加
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                   ファイラー
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'nav)
+(setq nav-split-window-direction 'vertical) ;; 分割したフレームを垂直に並べる
+(global-set-key "\C-x\C-d" 'nav-toggle)     ;; C-x C-d で nav をトグル
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                   tabber タブ
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'tabbar)
+(tabbar-mode)
+(global-set-key "\M-]" 'tabbar-forward)  ; 次のタブ
+(global-set-key "\M-[" 'tabbar-backward) ; 前のタブ
+;; タブ上でマウスホイールを使わない
+(tabbar-mwheel-mode nil)
+;; グループを使わない
+(setq tabbar-buffer-groups-function nil)
+;; 左側のボタンを消す
+(dolist (btn '(tabbar-buffer-home-button
+               tabbar-scroll-left-button
+               tabbar-scroll-right-button))
+  (set btn (cons (cons "" nil)
+                 (cons "" nil))))
+;; スタイル
+(set-face-attribute
+ 'tabbar-default nil
+ :background "gray20"
+ :foreground "gray20"
+ :box '(:line-width 1 :color "gray20" :style nil))
+(set-face-attribute
+ 'tabbar-unselected nil
+ :background "gray30"
+ :foreground "white"
+ :box '(:line-width 5 :color "gray30" :style nil))
+(set-face-attribute
+ 'tabbar-selected nil
+ :background "gray75"
+ :foreground "black"
+ :box '(:line-width 5 :color "gray75" :style nil))
+(set-face-attribute
+ 'tabbar-highlight nil
+ :background "white"
+ :foreground "black"
+ :underline nil
+ :box '(:line-width 5 :color "white" :style nil))
+(set-face-attribute
+ 'tabbar-button nil
+ :box '(:line-width 1 :color "gray20" :style nil))
+(set-face-attribute
+ 'tabbar-separator nil
+ :background "gray20"
+ :height 0.6)
