@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <16/06/30 12:29:35 /Users/z.takayuki.okazawa/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <16/07/01 10:48:31 /Users/z.takayuki.okazawa/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -21,4 +21,5 @@
   ("readlink" "\\readlink")
   ("gid-string" "z-takayuki-okazawa")
   ("~" "/home/z-takayuki-okazawa")
-  ("git" "\\git")))
+  ("git" "\\git")
+  ("uid-integer" 2001)))

@@ -83,7 +83,7 @@
 ;;(set-frame-parameter (selected-frame) 'alpha '(0.85))
 
 ;; フレームのサイズ
-(setq initial-frame-alist '((width . 140) (height . 60) (top . 20)))
+(setq initial-frame-alist '((width . 140) (height . 40) (top . 10)))
 
 ;; C-Enter で矩形選択
 ;; 詳しいキーバインド操作：http://dev.ariel-networks.com/articles/emacs/part5/
@@ -211,6 +211,7 @@
                tabbar-scroll-right-button))
   (set btn (cons (cons "" nil)
                  (cons "" nil))))
+
 ;; スタイル
 (set-face-attribute
  'tabbar-default nil
@@ -240,3 +241,13 @@
  'tabbar-separator nil
  :background "gray20"
  :height 0.6)
+
+ ;; 表示しないバッファ
+ (setq tabbar-buffer-list-function
+       (lambda ()
+         (remove-if
+          (lambda(buffer)
+            ;;(unless (string= (buffer-name buffer) "*scratch*")
+              (find (aref (buffer-name buffer) 0) " *"))
+            ;;)
+          (buffer-list))))
