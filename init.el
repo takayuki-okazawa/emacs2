@@ -1,7 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                   Genelal
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; スタートアップ非表示
 (setq inhibit-startup-screen t)
 
@@ -40,12 +39,6 @@
 ;; 行末の空白を強調表示
 (setq-default show-trailing-whitespace t)
 (set-face-background 'trailing-whitespace "#b14770")
-
-;; タブをスペースで扱う
-;;(setq-default indent-tabs-mode nil)
-
-;; タブ幅
-;;(custom-set-variables '(tab-width 4))
 
 ;; バックアップを残さない
 (setq make-backup-files nil)
@@ -195,11 +188,17 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                   company-auto  Python
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; M-x package-install RET company-jedi RET
+;;M-. 定義へジャンプ
+;;M-, 定義ジャンプから戻る
 (require 'jedi-core)
 (setq jedi:complete-on-dot t)
 (setq jedi:use-shortcuts t)
 (add-hook 'python-mode-hook 'jedi:setup)
 (add-to-list 'company-backends 'company-jedi) ; backendに追加
+;; インストール時のError対応
+;; pipインストール後
+;; $ sudo pip install --upgrade ~/.emacs.d/elpa/jedi-core-20160501.2043/
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                   company-auto  JavaScript
@@ -253,13 +252,13 @@
 ;;                Tabとインデント
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; タブをスペースで扱う
-(setq-default indent-tabs-mode nil)
+;;(setq-default indent-tabs-mode nil)
 
 ;; タブ幅
-(custom-set-variables '(tab-width 4))
+;;(custom-set-variables '(tab-width 4))
 
 ;;タブ幅を押したら4つスペース
-(setq default-tab-width 4)
+;;(setq default-tab-width 4)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                   tabber タブ
