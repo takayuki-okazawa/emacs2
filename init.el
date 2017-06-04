@@ -212,6 +212,14 @@
 (add-to-list 'company-backends 'company-tern) ; backendに追加
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                   company-auto  Java
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-to-list 'load-path "~/.emacs.d/elpa/ajc-java-complete/")
+(require 'ajc-java-complete-config)
+(add-hook 'java-mode-hook 'ajc-java-complete-mode)
+(add-hook 'find-file-hook 'ajc-4-jsp-find-file-hook)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                   Markdown
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (autoload 'markdown-mode "markdown-mode"
