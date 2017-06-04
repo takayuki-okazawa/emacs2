@@ -155,7 +155,7 @@
 ;;                   company-auto  パッケージ管理
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'company)
-;;(global-company-mode) ; 全バッファで有効にする
+(global-company-mode) ; 全バッファで有効にする
 (setq company-idle-delay 0) ; デフォルトは0.5
 (setq company-minimum-prefix-length 2) ; デフォルトは4
 (setq company-selection-wrap-around t) ; 候補の一番下でさらに下に行こうとすると一番上に戻る
@@ -214,10 +214,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                   company-auto  Java
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/elpa/ajc-java-complete/")
-(require 'ajc-java-complete-config)
-(add-hook 'java-mode-hook 'ajc-java-complete-mode)
-(add-hook 'find-file-hook 'ajc-4-jsp-find-file-hook)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                   Markdown
@@ -325,3 +322,17 @@
               (find (aref (buffer-name buffer) 0) " *"))
             ;;)
           (buffer-list))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (tabbar neotree nav markdown-mode jdecomp helm-ag elscreen-persist company-tern company-php company-jedi company-irony company-inf-ruby ac-php))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
