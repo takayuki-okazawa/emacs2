@@ -1,7 +1,7 @@
 #Emacs
 
 ## 対応言語
-Bash,Ruby,Python,Java,PHP
+Bash,Ruby,Python,Java,PHP,JavaScript
 
 ## install
 git clone https://github.com/takayuki-okazawa/emacs2.git ~/.emacs.d
