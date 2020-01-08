@@ -102,7 +102,7 @@
 ;;(load-theme 'suscolors-theme t)
 ;;(load-theme 'ubuntu-theme t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                   Package
+;;                   Package管理
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'package)
 
@@ -169,11 +169,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                   company-auto  PHP
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'cl)
 (add-hook 'php-mode-hook
-          '(lambda ()
-             (require 'company-php)
-             (company-mode t)
-             (add-to-list 'company-backends 'company-ac-php-backend )))
+            '(lambda ()
+               (auto-complete-mode t)
+               (require 'ac-php)
+               (setq ac-sources '(ac-source-php ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
+               (yas-global-mode 1)
+               (define-key php-mode-map  (kbd "C-]") 'ac-php-find-symbol-at-point)   ;goto define
+               (define-key php-mode-map  (kbd "C-t") 'ac-php-location-stack-back   ) ;go back
+               ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                   company-auto  C++
@@ -329,7 +334,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (tabbar neotree nav markdown-mode jdecomp helm-ag elscreen-persist company-tern company-php company-jedi company-irony company-inf-ruby ac-php))))
+    (php-mode tabbar neotree nav markdown-mode jdecomp helm-ag elscreen-persist company-tern company-php company-jedi company-irony company-inf-ruby ac-php))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
