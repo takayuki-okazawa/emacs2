@@ -1,5 +1,11 @@
 #Emacs
 
+## 対応言語
+Bash,Ruby,Python,Java,C++,PHP,JavaScript
+
+## install
+git clone https://github.com/takayuki-okazawa/emacs2.git ~/.emacs.d
+
 ## package
 * M-x package-list-packages-no-fetch	パッケージの一覧を表示（更新なし）
 * M-x package-refresh-contents	パッケージの一覧を更新
