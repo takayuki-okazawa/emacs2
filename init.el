@@ -87,20 +87,26 @@
 ;;                   Theme
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; https://emacsthemes.com/
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
+;; https://emacsthemes.com/
 ;;(load-theme 'reykjavik)
 ;;(load-theme 'kooten t)
 ;;(load-theme 'jbeans t)
 ;;(load-theme 'idea-darkula t)
 ;;(load-theme 'badwolf t)
 ;;(load-theme 'caroline t)
-(load-theme #'abyss t)
+;;(load-theme 'abyss t)
 ;;(load-theme 'green-phosphor t)
 ;;(load-theme 'mustard-theme t)
 ;;(load-theme 'peacock-theme t)
 ;;(load-theme 'suscolors-theme t)
 ;;(load-theme 'ubuntu-theme t)
+
+;;https://pawelbx.github.io/emacs-theme-gallery/
+;;(load-theme 'monokai t)
+;;(load-theme 'sanityinc-tomorrow-bright t)
+(load-theme 'cherry-blossom t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                   Package管理
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -232,9 +238,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                   ファイラー
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'nav)
-(setq nav-split-window-direction 'vertical) ;; 分割したフレームを垂直に並べる
-(global-set-key "\C-x\C-d" 'nav-toggle)     ;; C-x C-d で nav をトグル
+;; Neotree
+;; C-c でカーソルがあるフォルダをルート表示
+(require 'neotree)
+;; 隠しファイルをデフォルトで表示
+(setq neo-show-hidden-files t)
+(global-set-key "\C-x\C-d" 'neotree-toggle)
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                   helm
