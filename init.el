@@ -23,10 +23,10 @@
       (format "%%f - Emacs@%s" (system-name)))
 
 ;; 行番号表示
-(global-linum-mode t)
-(set-face-attribute 'linum nil
-                    :foreground "#800"
-                    :height 0.9)
+(global-display-line-numbers-mode 1)
+;;(set-face-attribute 'linum nil
+;;                    :foreground "#800"
+;;                    :height 0.9)
 
 ;; 括弧の範囲内を強調表示
 ;;(show-paren-mode t)
@@ -151,11 +151,22 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                   El-get パッケージ管理
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/plugin/el-get/")
-(require 'el-get)
+;;(add-to-list 'load-path "~/.emacs.d/plugin/el-get/")
+;;(require 'el-get)
 ;; M-x el-get-list-packages 一覧表示、欲しい所でi、そのあとx
 ;; M-x el-get-install インストールしたいel
 ;; M-x el-get-remove
+(add-to-list 'load-path (expand-file-name "el-get/el-get" user-emacs-directory))
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+(el-get 'sync)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                   company-auto  パッケージ管理
@@ -240,7 +251,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Neotree
 ;; C-c でカーソルがあるフォルダをルート表示
-(require 'neotree)
+(require 'helm)
+
 ;; 隠しファイルをデフォルトで表示
 (setq neo-show-hidden-files t)
 (global-set-key "\C-x\C-d" 'neotree-toggle)
@@ -249,7 +261,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                   helm
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'helm-config)
   (helm-mode 1)
   (define-key global-map (kbd "M-x")     'helm-M-x)
   (define-key global-map (kbd "C-x C-f") 'helm-find-files)
